@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import './Sidebar.css';
 import SidebarChat from "./SidebarChat"
@@ -7,6 +8,7 @@ import DonutLargeIcon from "@material-ui/icons/DonutLarge"
 import MoreVertIcon from "@material-ui/icons/MoreVert"
 import SearchOutlined from "@material-ui/icons/SearchOutlined"
 import db from "../firebase"
+import { useStateValue } from "./StateProvider";
 
 const Sidebar = () => {
 
@@ -31,10 +33,12 @@ const Sidebar = () => {
 
     }, [])
 
+    const [{ user }, dispatch] = useStateValue();
+
     return (
         <div className="sidebar">
             <div className="sidebar__header">
-                <Avatar/>
+                <Avatar src={user?.photoURL} />
                 <div className="sidebar__headerRight">
                     <IconButton>
                         <DonutLargeIcon/>
